@@ -2,25 +2,25 @@ import React from "react";
 import { AuthContext } from "../App";
 import Card from "./Card";
 const initialState = {
-  songs: [],
+  tracks: [],
   isFetching: false,
   hasError: false,
 };
 const reducer = (state, action) => {
   switch (action.type) {
-    case "FETCH_SONGS_REQUEST":
+    case "FETCH_TRACKS_REQUEST":
       return {
         ...state,
         isFetching: true,
         hasError: false,
       };
-    case "FETCH_SONGS_SUCCESS":
+    case "FETCH_TRACKS_SUCCESS":
       return {
         ...state,
         isFetching: false,
-        songs: action.payload,
+        tracks: action.payload,
       };
-    case "FETCH_SONGS_FAILURE":
+    case "FETCH_TRACKS_FAILURE":
       return {
         ...state,
         hasError: true,
@@ -35,9 +35,9 @@ export const Home = () => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
   React.useEffect(() => {
     dispatch({
-      type: "FETCH_SONGS_REQUEST",
+      type: "FETCH_TRACKS_REQUEST",
     });
-    fetch("https://hookedbe.herokuapp.com/api/songs", {
+    fetch(`${process.env.REACT_API_SERVER}/tracks`, {
       headers: {
         Authorization: `Bearer ${authState.token}`,
       },
@@ -52,14 +52,14 @@ export const Home = () => {
       .then((resJson) => {
         console.log(resJson);
         dispatch({
-          type: "FETCH_SONGS_SUCCESS",
+          type: "FETCH_TRACKS_SUCCESS",
           payload: resJson,
         });
       })
       .catch((error) => {
         console.log(error);
         dispatch({
-          type: "FETCH_SONGS_FAILURE",
+          type: "FETCH_TRACKS_FAILURE",
         });
       });
   }, [authState.token]);
@@ -73,9 +73,9 @@ export const Home = () => {
           <span className="error">AN ERROR HAS OCCURED</span>
         ) : (
           <>
-            {state.songs.length > 0 &&
-              state.songs.map((song) => (
-                <Card key={song.id.toString()} song={song} />
+            {state.tracks.length > 0 &&
+              state.tracks.map((track) => (
+                <Card key={track.id.toString()} track={track} />
               ))}
           </>
         )}

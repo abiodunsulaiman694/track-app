@@ -22,7 +22,7 @@ export const Login = () => {
       isSubmitting: true,
       errorMessage: null,
     });
-    fetch("https://hookedbe.herokuapp.com/api/login", {
+    fetch(`${process.env.REACT_API_SERVER}/login`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",

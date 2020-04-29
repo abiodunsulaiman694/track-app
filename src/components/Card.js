@@ -1,11 +1,11 @@
 import React from "react";
-export const Card = ({ song }) => {
+export const Card = ({ track }) => {
   return (
     <div className="card">
-      <img src={song.albumArt} alt="" />
+      <img src={track.albumArt} alt="" />
       <div className="content">
-        <h2>{song.name}</h2>
-        <span>BY: {song.artist}</span>
+        <h2>{track.name}</h2>
+        <span>BY: {track.artist}</span>
       </div>
     </div>
   );
