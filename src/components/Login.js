@@ -22,7 +22,7 @@ export const Login = () => {
       isSubmitting: true,
       errorMessage: null,
     });
-    fetch(`${process.env.REACT_API_SERVER}/login`, {
+    fetch(`${process.env.REACT_APP_API_SERVER}/login`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export const Login = () => {
             <h1>Login</h1>
 
             <label htmlFor="email">
-              Email Address
+              Email Address (admin)
               <input
                 type="text"
                 value={data.email}
@@ -71,7 +71,7 @@ export const Login = () => {
             </label>
 
             <label htmlFor="password">
-              Password
+              Password (password)
               <input
                 type="password"
                 value={data.password}

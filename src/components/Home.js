@@ -37,7 +37,7 @@ export const Home = () => {
     dispatch({
       type: "FETCH_TRACKS_REQUEST",
     });
-    fetch(`${process.env.REACT_API_SERVER}/tracks`, {
+    fetch(`${process.env.REACT_APP_API_SERVER}/tracks`, {
       headers: {
         Authorization: `Bearer ${authState.token}`,
       },
